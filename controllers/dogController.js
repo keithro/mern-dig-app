@@ -21,7 +21,7 @@ router.put('/:id', (req, res) => {
 
 //delete
 router.delete('/:id', (req, res) => {
-  Dog.findByIdAndDelete(req.params.id).then(dog => res.status(204).send({msg: "deleted"}))
+  Dog.findByIdAndDelete(req.params.id).then(() => Dog.find().then((dog) => res.json({data: dog})))
 })
 
 module.exports = router;
